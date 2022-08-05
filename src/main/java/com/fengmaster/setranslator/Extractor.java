@@ -41,7 +41,7 @@ public class Extractor {
                 //有需要翻译的文本
                 Matcher matcher = displayNamePattern.matcher(fileText);
                 while (matcher.find()){
-                    if (!matcher.group(1).startsWith("DisplayName_")){
+                    if (!matcher.group(1).contains("DisplayName_")){
                         textList.add(matcher.group(1));
                     }
                 }
@@ -65,7 +65,7 @@ public class Extractor {
                 //有需要翻译的文本
                 Matcher matcher = descPattern.matcher(fileText);
                 while (matcher.find()){
-                    if (!matcher.group(1).startsWith("Description_")){
+                    if (!matcher.group(1).contains("Description_")){
                         textList.add(matcher.group(1));
                     }
                 }

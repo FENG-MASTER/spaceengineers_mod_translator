@@ -1,7 +1,6 @@
 package com.fengmaster.setranslator;
 
 import cn.hutool.core.io.file.FileWriter;
-import cn.hutool.core.io.file.PathUtil;
 
 import java.io.File;
 import java.util.HashMap;
@@ -113,15 +112,15 @@ public class Main {
         BackupCenter backupCenter =new BackupCenter(currentPath);
         backupCenter.backup();
 
-//        Extractor executor =new Extractor(currentPath);
-//        FileWriter displayNameOFileWriter = new FileWriter(currentPath+ File.separator+"displayName_o.txt");
-//        displayNameOFileWriter.writeLines(executor.extractDisplayNameList());
-//
-//        FileWriter descOFileWriter = new FileWriter(currentPath+ File.separator+"desc_o.txt");
-//        descOFileWriter.writeLines(executor.extractDescList());
+        Extractor executor =new Extractor(currentPath);
+        FileWriter displayNameOFileWriter = new FileWriter(currentPath+ File.separator+"displayName_o.txt");
+        displayNameOFileWriter.writeLines(executor.extractDisplayNameList());
 
-        Translator translatorMap = new Translator(currentPath,"displayName_o.txt","displayName_t.txt","desc_o.txt","desc_t.txt");
-        translatorMap.translate();
+        FileWriter descOFileWriter = new FileWriter(currentPath+ File.separator+"desc_o.txt");
+        descOFileWriter.writeLines(executor.extractDescList());
+
+//        Translator translatorMap = new Translator(currentPath,"displayName_o.txt","displayName_t.txt","desc_o.txt","desc_t.txt");
+//        translatorMap.translate();
 //
 //        TransApi api = new TransApi(APP_ID, SECURITY_KEY);
 //

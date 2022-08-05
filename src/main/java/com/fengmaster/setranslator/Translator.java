@@ -52,7 +52,7 @@ public class Translator {
                 //有需要翻译的文本
                 Matcher matcher = displayNamePattern.matcher(fileText);
                 while (matcher.find()){
-                    if (!matcher.group(1).startsWith("DisplayName_")){
+                    if (!matcher.group(1).contains("DisplayName_")){
                         if (displayNameMap.containsKey(matcher.group(1))){
                             fileText=fileText.replace("<DisplayName>"+matcher.group(1)+"</DisplayName>","<DisplayName>"+displayNameMap.get(matcher.group(1))+"</DisplayName>");
                         }
@@ -62,9 +62,26 @@ public class Translator {
 
             }
 
+
+            if (fileText.contains("<Description>")){
+                //有需要翻译的文本
+                Matcher matcher = descPattern.matcher(fileText);
+                while (matcher.find()){
+                    if (!matcher.group(1).contains("Description_")){
+                        if (descMap.containsKey(matcher.group(1))){
+                            fileText=fileText.replace("<Description>"+matcher.group(1)+"</Description>","<Description>"+descMap.get(matcher.group(1))+"</Description>");
+                        }
+
+                    }
+                }
+
+            }
+
+
             FileWriter writer = new FileWriter(allSBCFile);
             writer.write(fileText,false);
         }
     }
+
 
 }
