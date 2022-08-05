@@ -35,7 +35,7 @@ public class Extractor {
 
         List<String> allSBCFiles = getAllSBCFiles(modPath);
         for (String allSBCFile : allSBCFiles) {
-            FileReader fr = new FileReader(allSBCFile);
+            FileReader fr = new FileReader(allSBCFile+".sbcbackup");
             String fileText = fr.readString();
             if (fileText.contains("<DisplayName>")){
                 //有需要翻译的文本
@@ -59,7 +59,7 @@ public class Extractor {
 
         List<String> allSBCFiles = getAllSBCFiles(modPath);
         for (String allSBCFile : allSBCFiles) {
-            FileReader fr = new FileReader(allSBCFile);
+            FileReader fr = new FileReader(allSBCFile+".sbcbackup");
             String fileText = fr.readString();
             if (fileText.contains("<Description>")){
                 //有需要翻译的文本

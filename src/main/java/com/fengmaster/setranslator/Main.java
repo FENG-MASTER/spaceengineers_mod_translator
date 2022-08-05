@@ -106,16 +106,22 @@ public class Main {
         if (args.length>1){
             currentPath=args[1];
         }
-//        String currentPath ="/home/fengwu/temp/Data/";
-        Extractor executor =new Extractor(currentPath);
-        FileWriter displayNameOFileWriter = new FileWriter(currentPath+ File.separator+"displayName_o.txt");
-        displayNameOFileWriter.writeLines(executor.extractDisplayNameList());
 
-        FileWriter descOFileWriter = new FileWriter(currentPath+ File.separator+"desc_o.txt");
-        descOFileWriter.writeLines(executor.extractDescList());
 
-//        Translator translatorMap = new Translator(currentPath,"displayName_o.txt","displayName_t.txt","desc_o.txt","desc_t.txt");
-//        translatorMap.translate();
+        currentPath ="/home/fengwu/temp/Data/";
+
+        BackupCenter backupCenter =new BackupCenter(currentPath);
+        backupCenter.backup();
+
+//        Extractor executor =new Extractor(currentPath);
+//        FileWriter displayNameOFileWriter = new FileWriter(currentPath+ File.separator+"displayName_o.txt");
+//        displayNameOFileWriter.writeLines(executor.extractDisplayNameList());
+//
+//        FileWriter descOFileWriter = new FileWriter(currentPath+ File.separator+"desc_o.txt");
+//        descOFileWriter.writeLines(executor.extractDescList());
+
+        Translator translatorMap = new Translator(currentPath,"displayName_o.txt","displayName_t.txt","desc_o.txt","desc_t.txt");
+        translatorMap.translate();
 //
 //        TransApi api = new TransApi(APP_ID, SECURITY_KEY);
 //
