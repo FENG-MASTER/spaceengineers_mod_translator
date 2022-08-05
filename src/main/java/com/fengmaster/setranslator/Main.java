@@ -108,6 +108,7 @@ public class Main {
 
 
         currentPath ="/home/fengwu/temp/Data/";
+        FileHelper.addExcludePath("/home/fengwu/temp/Data/1/");
 
         BackupCenter backupCenter =new BackupCenter(currentPath);
         backupCenter.backup();

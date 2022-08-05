@@ -6,10 +6,7 @@ import cn.hutool.core.io.file.FileWriter;
 import cn.hutool.core.util.CharsetUtil;
 import lombok.SneakyThrows;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.List;
@@ -61,41 +58,46 @@ public class Translator {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+            FileInputStream fileInputStream = new FileInputStream(allSBCFile + ".sbcbackup");
+            BufferedInputStream bufferedInputStream=new BufferedInputStream(fileInputStream);
+            bufferedInputStream.read();
+
             FileReader fr = new FileReader(allSBCFile+".sbcbackup",charset);
             String fileText = fr.readString();
 
-            boolean changeFlag = false;
+            boolean changeFlag = true;
 
-            if (fileText.contains("<DisplayName>")){
-                //有需要翻译的文本
-                Matcher matcher = displayNamePattern.matcher(fileText);
-                while (matcher.find()){
-                    if (!matcher.group(1).contains("DisplayName_")){
-                        if (displayNameMap.containsKey(matcher.group(1))){
-                            fileText=fileText.replace("<DisplayName>"+matcher.group(1)+"</DisplayName>","<DisplayName>"+displayNameMap.get(matcher.group(1))+"</DisplayName>");
-                            changeFlag=true;
-                        }
-
-                    }
-                }
-
-            }
-
-
-            if (fileText.contains("<Description>")){
-                //有需要翻译的文本
-                Matcher matcher = descPattern.matcher(fileText);
-                while (matcher.find()){
-                    if (!matcher.group(1).contains("Description_")){
-                        if (descMap.containsKey(matcher.group(1))){
-                            fileText=fileText.replace("<Description>"+matcher.group(1)+"</Description>","<Description>"+descMap.get(matcher.group(1))+"</Description>");
-                            changeFlag=true;
-                        }
-
-                    }
-                }
-
-            }
+//            if (fileText.contains("<DisplayName>")){
+//                //有需要翻译的文本
+//                Matcher matcher = displayNamePattern.matcher(fileText);
+//                while (matcher.find()){
+//                    if (!matcher.group(1).contains("DisplayName_")){
+//                        if (displayNameMap.containsKey(matcher.group(1))){
+//                            fileText=fileText.replace("<DisplayName>"+matcher.group(1)+"</DisplayName>","<DisplayName>"+displayNameMap.get(matcher.group(1))+"</DisplayName>");
+//                            changeFlag=true;
+//                        }
+//
+//                    }
+//                }
+//
+//            }
+//
+//
+//            if (fileText.contains("<Description>")){
+//                //有需要翻译的文本
+//                Matcher matcher = descPattern.matcher(fileText);
+//                while (matcher.find()){
+//                    if (!matcher.group(1).contains("Description_")){
+//                        if (descMap.containsKey(matcher.group(1))){
+//                            fileText=fileText.replace("<Description>"+matcher.group(1)+"</Description>","<Description>"+descMap.get(matcher.group(1))+"</Description>");
+//                            changeFlag=true;
+//                        }
+//
+//                    }
+//                }
+//
+//            }
 
             if (changeFlag){
                 FileWriter writer = new FileWriter(allSBCFile,charset);
